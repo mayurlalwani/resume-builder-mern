@@ -17,9 +17,11 @@ const resumeSchema = mongoose.Schema(
     },
     educationInfo: [
       {
+        universityName: { type: String, required: true },
+        collegeLocation: { type: String, required: true },
         degree: { type: String, required: true },
-        university: { type: String, required: true },
-        year: { type: Number, required: true },
+        startYear: { type: String, required: true },
+        endYear: { type: String, required: true },
         cgpa: { type: String, required: true },
       },
     ],
@@ -30,18 +32,19 @@ const resumeSchema = mongoose.Schema(
         jobTitle: { type: String, required: true },
         startDate: { type: String, required: true },
         endDate: { type: String, required: true },
-        teamSize: { type: Number, required: true },
+        description: { type: String, required: true },
       },
     ],
-    projects: [
+    projectsInfo: [
       {
         projectName: { type: String, required: true },
         supervisor: { type: String, required: true },
-        projectStart: { type: String, required: true },
-        projectEnd: { type: String, required: true },
-        projectTeamSize: { type: Number, required: true },
+        projectDescription: { type: String, required: true },
       },
     ],
+    skills: { type: String, required: true },
+    toolsAndTechnologies: { type: String, required: true },
+    achievements: { type: String, required: true },
   },
   {
     timestamps: true,

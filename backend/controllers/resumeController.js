@@ -16,9 +16,12 @@ const getNoteById = asyncHandler(async (req, res) => {
 });
 
 const saveReumeDetails = asyncHandler(async (req, res) => {
-  const { personalInfo, educationInfo, experienceInfo } = req.body;
-  // const { fullName, resumeHeadline, email, address, city, contact } =
-  //   personalInfoDetails;
+  const {
+    personalInfo,
+    educationInfo,
+    experienceInfo,
+    projectsInfo,
+  } = req.body;
 
   const resume = await Resume.find({ user: req.user._id.toString() });
   if (resume.length === 0) {
@@ -26,12 +29,8 @@ const saveReumeDetails = asyncHandler(async (req, res) => {
       user: req.user._id,
       personalInfo: personalInfo,
       experienceInfo: experienceInfo,
-      // fullName,
-      // resumeHeadline,
-      // email,
-      // address,
-      // city,
-      // contact,
+      educationInfo: educationInfo,
+      projectsInfo: projectsInfo,
     });
     const createdResume = await createResume.save();
     res.json(createdResume);

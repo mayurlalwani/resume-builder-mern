@@ -55,7 +55,7 @@ export const getResumeDetails = () => async (dispatch, getState) => {
 };
 
 export const saveResumeAction =
-  ({ personalInfo, experienceInfo }) =>
+  ({ personalInfo, experienceInfo, educationInfo, projectsInfo }) =>
   async (dispatch, getState) => {
     try {
       dispatch({ type: RESUME_SAVE_REQUEST });
@@ -76,6 +76,8 @@ export const saveResumeAction =
         {
           personalInfo,
           experienceInfo,
+          educationInfo,
+          projectsInfo,
         },
         config
       );
