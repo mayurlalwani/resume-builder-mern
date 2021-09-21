@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import { Link } from "react-router-dom";
-import { Button, Card, Badge, Accordion } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { getResumeDetails } from "../../../actions/resumeActions";
-import Loading from "../../Loading";
 import LeftSidebar from "./LeftSidebar/LeftSidebar";
 import ResumeTemplate from "./ResumeTemplate/ResumeTemplate";
 import "./ResumePage.scss";
@@ -12,30 +9,57 @@ import "./ResumePage.scss";
 const ResumePage = () => {
   const dispatch = useDispatch();
 
-  const resumeDetails = useSelector((state) => state.resumeDetails);
-  const { loading, resume, error } = resumeDetails;
+  const resumeDetails = useSelector(
+    (state) => state.resumeDetails.allResumeDetails
+  );
 
-  // const deleteHandler = (id) => {
-  //   if (window.confirm("Are you sure?")) {
-  //     dispatch(deleteNoteAction(id));
-  //   }
-  // };
+  const [personalInfoValues, setPersonalInfoValues] = useState([
+    {
+      fullName: "",
+      resumeHeadline: "",
+      address: "",
+      city: "",
+      contact: "",
+      email: "",
+    },
+  ]);
+
+  const [experienceValues, setExperienceValues] = useState([
+    {
+      companyName: "",
+      location: "",
+      jobTitle: "",
+      startDate: "",
+      endDate: "",
+      description: "",
+    },
+  ]);
+
+  const [educationValues, setEducationValues] = useState([
+    {
+      universityName: "",
+      collegeLocation: "",
+      degree: "",
+      startYear: "",
+      endYear: "",
+      cgpa: "",
+    },
+  ]);
+
+  const [projectValues, setProjectValues] = useState([
+    {
+      projectName: "",
+      supervisor: "",
+      projectDescription: "",
+    },
+  ]);
+
+  const [skills, setSkills] = useState("");
+  const [toolsAndTech, setToolsAndTech] = useState("");
+  const [achievements, setAchievements] = useState("");
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
-
-  // const noteCreate = useSelector((state) => state.noteCreate);
-  // const { success: successCreate } = noteCreate;
-
-  // const noteUpdate = useSelector((state) => state.noteUpdate);
-  // const { success: successUpdate } = noteUpdate;
-
-  // const noteDelete = useSelector((state) => state.noteDelete);
-  // const {
-  //   loading: loadingDelete,
-  //   error: errorDelete,
-  //   success: successDelete,
-  // } = noteDelete;
 
   const history = useHistory;
 
@@ -53,12 +77,49 @@ const ResumePage = () => {
     // successDelete,
   ]);
 
+  useEffect(() => {
+    if (resumeDetails) {
+      const { personalInfo } = resumeDetails[0];
+      setPersonalInfoValues([
+        {
+          fullName: personalInfo.fullName,
+          resumeHeadline: personalInfo.resumeHeadline,
+          address: personalInfo.address,
+          city: personalInfo.city,
+          contact: personalInfo.contact,
+          email: personalInfo.email,
+        },
+      ]);
+    }
+  }, [resumeDetails]);
+
   return (
     <div className="main-container">
-      <LeftSidebar />
+      <LeftSidebar
+        personalInfoValues={personalInfoValues}
+        setPersonalInfoValues={setPersonalInfoValues}
+        educationValues={educationValues}
+        setEducationValues={setEducationValues}
+        experienceValues={experienceValues}
+        setExperienceValues={setExperienceValues}
+        projectValues={projectValues}
+        setProjectValues={setProjectValues}
+        skills={skills}
+        setSkills={setSkills}
+        toolsAndTech={toolsAndTech}
+        setToolsAndTech={setToolsAndTech}
+        achievements={achievements}
+        setAchievements={setAchievements}
+      />
       <ResumeTemplate
-      // personalInfoDetail={personalInfoDetails}
-      // educationInfoDetails={educationInfoDetails}
+        personalInfoValues={personalInfoValues}
+        setPersonalInfoValues={setPersonalInfoValues}
+        educationValues={educationValues}
+        experienceValues={experienceValues}
+        projectValues={projectValues}
+        skills={skills}
+        toolsAndTech={toolsAndTech}
+        achievements={achievements}
       />
     </div>
   );

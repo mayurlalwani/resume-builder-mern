@@ -1,25 +1,17 @@
 import React from "react";
 
 const ResumeTemplate = ({
-  fullName,
-  collegeName,
-  collegeLocation,
-  resumeHeadline,
-  startDate,
-  endDate,
-  degree,
-  address,
-  city,
-  contact,
-  email,
-  personalInfoDetails,
-  educationInfoDetails,
+  personalInfoValues,
+  educationValues,
+  experienceValues,
+  projectValues,
+  skills,
+  toolsAndTech,
+  achievements,
 }) => {
-  // const { fullName, email, resumeHeadline, address, city, contact } =
-  //   personalInfoDetails;
+  const { fullName, email, resumeHeadline, address, city, contact } =
+    personalInfoValues;
 
-  // const { collegeName, collegeLocation, degree, startDate, endDate } =
-  //   educationInfoDetails;
   return (
     <div className="main-container-resume-section">
       <div className="resume-details">
@@ -38,18 +30,48 @@ const ResumeTemplate = ({
               nonummy nibh.
             </p>
           </section>
-          <section className="section-container">
+          {/* <section className="section-container">
             <h4>Education</h4>
-            <b>{collegeName || "School Name"}</b>,{" "}
+            <b>{universityName || "School Name"}</b>,{" "}
             {collegeLocation || "Location"} - {degree || "Degree"}
             <br />
             <span>
-              {startDate || "Month 2010"} - {endDate || "PRESENT"}
+              {startYear || "Month 2010"} - {endYear || "PRESENT"}
             </span>
             <p>
               Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
               nonummy nibh.
             </p>
+          </section> */}
+
+          <section className="section-container">
+            <h4>Education</h4>
+            {educationValues.length > 0 &&
+              educationValues.map((data) => {
+                const {
+                  universityName,
+                  collegeLocation,
+                  degree,
+                  startYear,
+                  endYear,
+                  cgpa,
+                } = data;
+                return (
+                  <>
+                    <b>{universityName || "University Name - "}-</b>
+                    <span>
+                      -{collegeLocation || "Location"} - {degree || "Degree"}
+                    </span>
+                    <span>
+                      {startYear || "Month 2010"} - {endYear || "PRESENT"}
+                    </span>
+                    <p>
+                      Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
+                      sed diam nonummy nibh.
+                    </p>
+                  </>
+                );
+              })}
           </section>
 
           <section className="section-container">

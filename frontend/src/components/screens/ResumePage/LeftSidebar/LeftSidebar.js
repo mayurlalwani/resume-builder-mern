@@ -14,47 +14,24 @@ import {
 
 const { Panel } = Collapse;
 
-const LeftSidebar = () => {
+const LeftSidebar = ({
+  personalInfoValues,
+  setPersonalInfoValues,
+  educationValues,
+  setEducationValues,
+  experienceValues,
+  setExperienceValues,
+  projectValues,
+  setProjectValues,
+  skills,
+  setSkills,
+  toolsAndTech,
+  setToolsAndTech,
+  achievements,
+  setAchievements,
+}) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
-
-  const resumeDetails = useSelector((state) => state.resumeDetails);
-
-  const [personalInfoDetails, setPersonalInfoDetails] = useState({});
-
-  const [experienceValues, setExperienceValues] = useState([
-    {
-      companyName: "",
-      location: "",
-      jobTitle: "",
-      startDate: "",
-      endDate: "",
-      description: "",
-    },
-  ]);
-
-  const [educationValues, setEducationValues] = useState([
-    {
-      universityName: "",
-      collegeLocation: "",
-      degree: "",
-      startYear: "",
-      endYear: "",
-      cgpa: "",
-    },
-  ]);
-
-  const [projectValues, setProjectValues] = useState([
-    {
-      projectName: "",
-      supervisor: "",
-      projectDescription: "",
-    },
-  ]);
-
-  const [skills, setSkills] = useState("");
-  const [toolsAndTech, setToolsAndTech] = useState("");
-  const [achievements, setAchievements] = useState("");
 
   const [addNewPanel, setAddNewPanel] = useState(false);
 
@@ -65,7 +42,7 @@ const LeftSidebar = () => {
   const handleSave = () => {
     dispatch(
       saveResumeAction({
-        personalInfo: personalInfoDetails,
+        personalInfo: personalInfoValues,
         experienceInfo: experienceValues,
         educationInfo: educationValues,
         projectsInfo: projectValues,
@@ -73,11 +50,11 @@ const LeftSidebar = () => {
     );
   };
 
-  const handleChange = (e) => {
-    setPersonalInfoDetails({
-      ...personalInfoDetails,
-      [e.target.name]: e.target.value,
-    });
+  const handleChange = (e, index) => {
+    const { name, value } = e.target;
+    const list = [...personalInfoValues];
+    list[index][name] = value;
+    setPersonalInfoValues(list);
   };
 
   const handleChangeExperienceValues = (e, index) => {
@@ -137,7 +114,7 @@ const LeftSidebar = () => {
     values.push([]);
     setProjectValues(values);
   };
-
+  console.log({ personalInfoValues });
   return (
     <div className="left-sidebar-container">
       <Collapse
@@ -146,16 +123,70 @@ const LeftSidebar = () => {
         className="resume-heading-section"
       >
         <Panel header="Personal Info" key="1">
-          {personalInfoLabels.map((personalInfo) => (
-            <TextField
-              id="standard-multiline-flexible-1"
-              label={personalInfo.label}
-              placeholder={personalInfo.placeholder}
-              onChange={handleChange}
-              className="input-value"
-              name={personalInfo.name}
-              autoComplete={false}
-            />
+          {personalInfoValues.map((data, index) => (
+            <>
+              <TextField
+                id="standard-multiline-flexible-1"
+                label={personalInfoLabels[0].label}
+                placeholder={personalInfoLabels[0].placeholder}
+                onChange={(e) => handleChange(e, index)}
+                className="input-value"
+                name={personalInfoLabels[0].name}
+                autoComplete={false}
+                value={personalInfoValues[index].fullName}
+                key={1}
+              />
+              <TextField
+                id="standard-multiline-flexible-1"
+                label={personalInfoLabels[1].label}
+                placeholder={personalInfoLabels[1].placeholder}
+                onChange={handleChange}
+                className="input-value"
+                name={personalInfoLabels[1].name}
+                autoComplete={false}
+                key={2}
+              />
+              <TextField
+                id="standard-multiline-flexible-1"
+                label={personalInfoLabels[2].label}
+                placeholder={personalInfoLabels[2].placeholder}
+                onChange={handleChange}
+                className="input-value"
+                name={personalInfoLabels[2].name}
+                autoComplete={false}
+                key={3}
+              />
+              <TextField
+                id="standard-multiline-flexible-1"
+                label={personalInfoLabels[3].label}
+                placeholder={personalInfoLabels[3].placeholder}
+                onChange={handleChange}
+                className="input-value"
+                name={personalInfoLabels[3].name}
+                autoComplete={false}
+                key={4}
+              />
+              <TextField
+                id="standard-multiline-flexible-1"
+                label={personalInfoLabels[4].label}
+                placeholder={personalInfoLabels[4].placeholder}
+                onChange={handleChange}
+                className="input-value"
+                name={personalInfoLabels[4].name}
+                autoComplete={false}
+                key={5}
+              />
+              <TextField
+                id="standard-multiline-flexible-1"
+                label={personalInfoLabels[5].label}
+                placeholder={personalInfoLabels[5].placeholder}
+                onChange={handleChange}
+                className="input-value"
+                name={personalInfoLabels[5].name}
+                autoComplete={false}
+                key={6}
+              />
+            </>
           ))}
         </Panel>
 
@@ -367,7 +398,7 @@ const LeftSidebar = () => {
             className="input-value"
           />
         </Panel>
-        <Panel header="Awards and Achievemnts" key="6">
+        <Panel header="Awards and Achievemnts" key="7">
           <TextField
             label="Awards and Achievemnts"
             placeholder="Awards and Achievemnts"
