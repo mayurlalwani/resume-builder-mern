@@ -88,16 +88,13 @@ const ResumePage = () => {
         toolsAndTechInfo,
         achievementsInfo,
       } = resumeDetails[0];
-      setPersonalInfoValues([
-        {
-          fullName: personalInfo[0].fullName,
-          resumeHeadline: personalInfo[0].resumeHeadline,
-          address: personalInfo[0].address,
-          city: personalInfo[0].city,
-          contact: personalInfo[0].contact,
-          email: personalInfo[0].email,
-        },
-      ]);
+      setPersonalInfoValues(personalInfo);
+      setEducationValues(educationInfo);
+      setExperienceValues(experienceInfo);
+      setProjectValues(projectsInfo);
+      setSkills(skillsInfo);
+      setToolsAndTech(toolsAndTechInfo);
+      setAchievements(achievementsInfo);
     }
   }, [resumeDetails]);
 

@@ -29,6 +29,7 @@ const LeftSidebar = ({
   setToolsAndTech,
   achievements,
   setAchievements,
+  handleSave,
 }) => {
   const userLogin = useSelector((state) => state.userLogin);
   const [activeKey, setActiveKey] = useState([]);
@@ -211,6 +212,7 @@ const LeftSidebar = ({
                   name={experienceInfoLabels[0].name}
                   autoComplete={false}
                   className="input-value"
+                  value={experienceInfo.companyName}
                 />
                 <TextField
                   label={experienceInfoLabels[1].label}
@@ -220,6 +222,7 @@ const LeftSidebar = ({
                   name={experienceInfoLabels[1].name}
                   autoComplete={false}
                   className="input-value"
+                  value={experienceInfo.location}
                 />
 
                 <TextField
@@ -230,6 +233,7 @@ const LeftSidebar = ({
                   name={experienceInfoLabels[2].name}
                   autoComplete={false}
                   className="input-value"
+                  value={experienceInfo.jobTitle}
                 />
                 <TextField
                   label={experienceInfoLabels[3].label}
@@ -239,6 +243,7 @@ const LeftSidebar = ({
                   name={experienceInfoLabels[3].name}
                   autoComplete={false}
                   className="input-value"
+                  value={experienceInfo.startDate}
                 />
                 <TextField
                   label={experienceInfoLabels[4].label}
@@ -248,6 +253,7 @@ const LeftSidebar = ({
                   name={experienceInfoLabels[4].name}
                   autoComplete={false}
                   className="input-value"
+                  value={experienceInfo.endDate}
                 />
                 <TextField
                   label={experienceInfoLabels[5].label}
@@ -257,6 +263,7 @@ const LeftSidebar = ({
                   name={experienceInfoLabels[5].name}
                   autoComplete={false}
                   className="input-value"
+                  value={experienceInfo.description}
                 />
               </Panel>
             </Collapse>
@@ -271,7 +278,7 @@ const LeftSidebar = ({
         </Panel>
 
         <Panel header="Education" key="3">
-          {experienceValues.map((experienceInfo, index) => (
+          {educationValues.map((educationInfo, index) => (
             <Collapse
               onChange={callback}
               className="resume-heading-section"
@@ -286,6 +293,7 @@ const LeftSidebar = ({
                   name={educationInfoLabels[0].name}
                   autoComplete={false}
                   className="input-value"
+                  value={educationInfo.universityName}
                 />
                 <TextField
                   label={educationInfoLabels[1].label}
@@ -295,6 +303,7 @@ const LeftSidebar = ({
                   name={educationInfoLabels[1].name}
                   autoComplete={false}
                   className="input-value"
+                  value={educationInfo.collegeLocation}
                 />
 
                 <TextField
@@ -305,6 +314,7 @@ const LeftSidebar = ({
                   name={educationInfoLabels[2].name}
                   autoComplete={false}
                   className="input-value"
+                  value={educationInfo.degree}
                 />
                 <TextField
                   label={educationInfoLabels[3].label}
@@ -314,6 +324,7 @@ const LeftSidebar = ({
                   name={educationInfoLabels[3].name}
                   autoComplete={false}
                   className="input-value"
+                  value={educationInfo.startYear}
                 />
                 <TextField
                   label={educationInfoLabels[4].label}
@@ -323,6 +334,7 @@ const LeftSidebar = ({
                   name={educationInfoLabels[4].name}
                   autoComplete={false}
                   className="input-value"
+                  value={educationInfo.endYear}
                 />
                 <TextField
                   label={educationInfoLabels[5].label}
@@ -332,6 +344,7 @@ const LeftSidebar = ({
                   name={educationInfoLabels[5].name}
                   autoComplete={false}
                   className="input-value"
+                  value={educationInfo.cgpa}
                 />
               </Panel>
             </Collapse>
@@ -346,7 +359,7 @@ const LeftSidebar = ({
         </Panel>
 
         <Panel header="Projects" key="4">
-          {experienceValues.map((experienceInfo, index) => (
+          {projectValues.map((data, index) => (
             <Collapse
               onChange={callback}
               className="resume-heading-section"
@@ -361,6 +374,7 @@ const LeftSidebar = ({
                   name={projectsInfoLabels[0].name}
                   autoComplete={false}
                   className="input-value"
+                  value={data.projectName}
                 />
                 <TextField
                   label={projectsInfoLabels[1].label}
@@ -370,6 +384,7 @@ const LeftSidebar = ({
                   name={projectsInfoLabels[1].name}
                   autoComplete={false}
                   className="input-value"
+                  value={data.supervisor}
                 />
 
                 <TextField
@@ -380,6 +395,7 @@ const LeftSidebar = ({
                   name={projectsInfoLabels[2].name}
                   autoComplete={false}
                   className="input-value"
+                  value={data.projectDescription}
                 />
               </Panel>
             </Collapse>
@@ -402,6 +418,7 @@ const LeftSidebar = ({
             name="skills"
             autoComplete={false}
             className="input-value"
+            value={skills}
           />
         </Panel>
         <Panel header="Tools and Technologies" key="6">
@@ -413,6 +430,7 @@ const LeftSidebar = ({
             name="toolsAndTechnologies"
             autoComplete={false}
             className="input-value"
+            value={toolsAndTech}
           />
         </Panel>
         <Panel header="Awards and Achievemnts" key="7">
@@ -424,6 +442,7 @@ const LeftSidebar = ({
             name="achievements"
             autoComplete={false}
             className="input-value"
+            value={achievements}
           />
         </Panel>
       </Collapse>
