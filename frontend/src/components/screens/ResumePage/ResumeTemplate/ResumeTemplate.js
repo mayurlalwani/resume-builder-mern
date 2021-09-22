@@ -10,42 +10,58 @@ const ResumeTemplate = ({
   achievements,
 }) => {
   const { fullName, email, resumeHeadline, address, city, contact } =
-    personalInfoValues;
+    personalInfoValues[0];
 
   return (
     <div className="main-container-resume-section">
       <div className="resume-details">
         <div className="left-section-primary-details">
-          <header>
-            <h1>{fullName ? fullName : "Your Name"}</h1>
+          <header className="header">
+            <h1 className="full-name">{fullName ? fullName : "Your Name"}</h1>
             <p>{resumeHeadline || "Resume Headline"} </p>
           </header>
-          <section className="section-container">
-            <h4>Experience</h4>
-            <b>Company</b>, Location - Job Title
-            <br />
-            <span>Month 2010 - PRESENT</span>
-            <p>
-              Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
-              nonummy nibh.
-            </p>
-          </section>
-          {/* <section className="section-container">
-            <h4>Education</h4>
-            <b>{universityName || "School Name"}</b>,{" "}
-            {collegeLocation || "Location"} - {degree || "Degree"}
-            <br />
-            <span>
-              {startYear || "Month 2010"} - {endYear || "PRESENT"}
-            </span>
-            <p>
-              Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
-              nonummy nibh.
-            </p>
-          </section> */}
 
           <section className="section-container">
-            <h4>Education</h4>
+            <span className="section-heading">Experience</span>
+            {experienceValues &&
+              experienceValues.map((data) => {
+                const {
+                  companyName,
+                  location,
+                  jobTitle,
+                  startDate,
+                  endDate,
+                  description,
+                } = data;
+                return (
+                  <>
+                    <div className="section-details">
+                      <span className="section-details name">
+                        {companyName ? companyName + "," : "Comapany,"}
+                      </span>
+                      <span className="section-details location">
+                        &nbsp; {location || " Location"} ---
+                      </span>
+                      <span className="section-details section-title">
+                        {jobTitle ? jobTitle + " " : "   Job Title "}
+                      </span>
+                    </div>
+                    <span className="duration">
+                      {/* {`${startDate ||  "Month 20XX" && ${endDate} || "-PRESENT"`} */}
+                      {startDate || "Month 20XX "}
+                      {endDate || " - PRESENT"}
+                    </span>
+                    <p className="description">
+                      {description ||
+                        "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, se diam nonummy nibh."}
+                    </p>
+                  </>
+                );
+              })}
+          </section>
+
+          <section className="section-container">
+            <span className="section-heading">Education</span>
             {educationValues.length > 0 &&
               educationValues.map((data) => {
                 const {
@@ -58,31 +74,49 @@ const ResumeTemplate = ({
                 } = data;
                 return (
                   <>
-                    <b>{universityName || "University Name - "}-</b>
-                    <span>
-                      -{collegeLocation || "Location"} - {degree || "Degree"}
+                    <div className="section-details">
+                      <span className="section-details name">
+                        {universityName
+                          ? universityName + ", "
+                          : "University Name,  "}
+                      </span>
+                      <span className="section-details location">
+                        {collegeLocation ? " " + collegeLocation : "Location "}{" "}
+                        {"---  "}
+                      </span>
+                      <span className="section-details section-title">
+                        {degree || "  Degree"}
+                      </span>
+                    </div>
+                    <span className="duration">
+                      {startYear || "Month 20XX"} - {endYear || "PRESENT"}
                     </span>
-                    <span>
-                      {startYear || "Month 2010"} - {endYear || "PRESENT"}
-                    </span>
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-                      sed diam nonummy nibh.
-                    </p>
                   </>
                 );
               })}
           </section>
 
           <section className="section-container">
-            <h4>Projects</h4>
-            <b>Project Name</b>, Detail
-            <br />
-            <span>Month 2010 - PRESENT</span>
-            <p>
-              Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
-              nonummy nibh.
-            </p>
+            <span className="section-heading">Projects</span>
+            {projectValues?.map((data) => {
+              const { projectName, supervisor, projectDescription } = data;
+              return (
+                <>
+                  <div className="section-details">
+                    <span className="section-details name">
+                      {projectName ? projectName + "," : "Comapany,"}
+                    </span>
+                    <span className="section-details location">
+                      &nbsp; {supervisor || " Supervisor"}
+                    </span>
+                  </div>
+                  <p className="description">
+                    {projectDescription ||
+                      "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh."}
+                  </p>
+                </>
+              );
+            })}
           </section>
         </div>
         <div className="right-section-secondary-details">
@@ -95,19 +129,25 @@ const ResumeTemplate = ({
             </address>
           </header>
           <section className="section-container">
-            <h4>Skills</h4>
-            Lorem ipsum dolor sit amet. Consectetuer adipiscing elit. Sed diam
-            nonummy nibh euismod tincidunt.
+            <span className="section-heading">Skills</span>
+            <p className="right-section description">
+              {skills ||
+                "Lorem ipsum dolor sit amet. Consectetuer adipiscing elit. Sed diam nonummy nibh euismod tincidunt."}
+            </p>
           </section>
           <section className="section-container">
-            <h4>Awards</h4>
-            Lorem ipsum dolor sit amet. Consectetuer adipiscing elit. Sed diam
-            nonummy nibh euismod tincidunt.
+            <span className="section-heading">Awards</span>
+            <p className="right-section description">
+              {achievements ||
+                "Lorem ipsum dolor sit amet. Consectetuer adipiscing elit. Sed diam nonummy nibh euismod tincidunt."}
+            </p>
           </section>
           <section className="section-container">
-            <h4>Languages</h4>
-            Lorem ipsum dolor sit amet. Consectetuer adipiscing elit. Sed diam
-            nonummy nibh euismod tincidunt.
+            <span className="section-heading">Tools And Technologes</span>
+            <p className="right-section description">
+              {toolsAndTech ||
+                "Lorem ipsum dolor sit amet. Consectetuer adipiscing elit. Sed diam nonummy nibh euismod tincidunt."}
+            </p>
           </section>
         </div>
       </div>
