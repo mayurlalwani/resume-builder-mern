@@ -78,16 +78,24 @@ const ResumePage = () => {
   ]);
 
   useEffect(() => {
-    if (resumeDetails) {
-      const { personalInfo } = resumeDetails[0];
+    if (resumeDetails && resumeDetails.length > 0) {
+      const {
+        personalInfo,
+        educationInfo,
+        experienceInfo,
+        projectsInfo,
+        skillsInfo,
+        toolsAndTechInfo,
+        achievementsInfo,
+      } = resumeDetails[0];
       setPersonalInfoValues([
         {
-          fullName: personalInfo.fullName,
-          resumeHeadline: personalInfo.resumeHeadline,
-          address: personalInfo.address,
-          city: personalInfo.city,
-          contact: personalInfo.contact,
-          email: personalInfo.email,
+          fullName: personalInfo[0].fullName,
+          resumeHeadline: personalInfo[0].resumeHeadline,
+          address: personalInfo[0].address,
+          city: personalInfo[0].city,
+          contact: personalInfo[0].contact,
+          email: personalInfo[0].email,
         },
       ]);
     }

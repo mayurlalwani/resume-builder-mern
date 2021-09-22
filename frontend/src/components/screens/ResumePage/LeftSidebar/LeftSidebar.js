@@ -47,6 +47,9 @@ const LeftSidebar = ({
         experienceInfo: experienceValues,
         educationInfo: educationValues,
         projectsInfo: projectValues,
+        skillsInfo: skills,
+        toolsAndTechInfo: toolsAndTech,
+        achievementsInfo: achievements,
       })
     );
   };
@@ -116,6 +119,7 @@ const LeftSidebar = ({
     values.push([]);
     setProjectValues(values);
   };
+
   return (
     <div className="left-sidebar-container">
       <Collapse

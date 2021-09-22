@@ -7,14 +7,16 @@ const resumeSchema = mongoose.Schema(
       required: true,
       ref: "User",
     },
-    personalInfo: {
-      fullName: { type: String, required: true },
-      resumeHeadline: { type: String, required: true },
-      email: { type: String, required: true },
-      address: { type: String, required: true },
-      city: { type: String, required: true },
-      contact: { type: Number, required: true },
-    },
+    personalInfo: [
+      {
+        fullName: { type: String, required: true },
+        resumeHeadline: { type: String, required: true },
+        email: { type: String, required: true },
+        address: { type: String, required: true },
+        city: { type: String, required: true },
+        contact: { type: Number, required: true },
+      },
+    ],
     educationInfo: [
       {
         universityName: { type: String, required: true },
@@ -42,9 +44,9 @@ const resumeSchema = mongoose.Schema(
         projectDescription: { type: String, required: true },
       },
     ],
-    skills: { type: String, required: true },
-    toolsAndTechnologies: { type: String, required: true },
-    achievements: { type: String, required: true },
+    skillsInfo: { type: String, required: true },
+    toolsAndTechInfo: { type: String, required: true },
+    achievementsInfo: { type: String, required: true },
   },
   {
     timestamps: true,

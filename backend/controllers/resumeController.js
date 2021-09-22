@@ -21,6 +21,9 @@ const saveReumeDetails = asyncHandler(async (req, res) => {
     educationInfo,
     experienceInfo,
     projectsInfo,
+    skillsInfo,
+    toolsAndTechInfo,
+    achievementsInfo,
   } = req.body;
 
   const resume = await Resume.find({ user: req.user._id.toString() });
@@ -31,6 +34,9 @@ const saveReumeDetails = asyncHandler(async (req, res) => {
       experienceInfo: experienceInfo,
       educationInfo: educationInfo,
       projectsInfo: projectsInfo,
+      skillsInfo: skillsInfo,
+      toolsAndTechInfo: toolsAndTechInfo,
+      achievementsInfo: achievementsInfo,
     });
     const createdResume = await createResume.save();
     res.json(createdResume);
