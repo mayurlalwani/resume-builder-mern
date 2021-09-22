@@ -29,7 +29,6 @@ const LeftSidebar = ({
   setToolsAndTech,
   achievements,
   setAchievements,
-  handleSave,
 }) => {
   const userLogin = useSelector((state) => state.userLogin);
   const [activeKey, setActiveKey] = useState([]);
