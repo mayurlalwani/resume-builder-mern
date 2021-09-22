@@ -31,6 +31,7 @@ const LeftSidebar = ({
   setAchievements,
 }) => {
   const userLogin = useSelector((state) => state.userLogin);
+  const [activeKey, setActiveKey] = useState([]);
   const { userInfo } = userLogin;
 
   const [addNewPanel, setAddNewPanel] = useState(false);
@@ -91,7 +92,8 @@ const LeftSidebar = ({
   };
 
   function callback(key) {
-    console.log(key);
+    console.log({ key });
+    setActiveKey(key);
   }
 
   const handleAddExperiencePanel = () => {
@@ -114,17 +116,17 @@ const LeftSidebar = ({
     values.push([]);
     setProjectValues(values);
   };
-  console.log({ personalInfoValues });
   return (
     <div className="left-sidebar-container">
       <Collapse
-        // defaultActiveKey={["1"]}
+        defaultActiveKey={["1"]}
         onChange={callback}
         className="resume-heading-section"
+        accordion
       >
         <Panel header="Personal Info" key="1">
           {personalInfoValues.map((data, index) => (
-            <>
+            <div key={index}>
               <TextField
                 id="standard-multiline-flexible-1"
                 label={personalInfoLabels[0].label}
@@ -133,66 +135,69 @@ const LeftSidebar = ({
                 className="input-value"
                 name={personalInfoLabels[0].name}
                 autoComplete={false}
-                value={personalInfoValues[index].fullName}
-                key={1}
+                value={data.fullName}
               />
               <TextField
                 id="standard-multiline-flexible-1"
                 label={personalInfoLabels[1].label}
                 placeholder={personalInfoLabels[1].placeholder}
-                onChange={handleChange}
+                onChange={(e) => handleChange(e, index)}
                 className="input-value"
                 name={personalInfoLabels[1].name}
                 autoComplete={false}
-                key={2}
+                value={data.resumeHeadline}
               />
               <TextField
                 id="standard-multiline-flexible-1"
                 label={personalInfoLabels[2].label}
                 placeholder={personalInfoLabels[2].placeholder}
-                onChange={handleChange}
+                onChange={(e) => handleChange(e, index)}
                 className="input-value"
                 name={personalInfoLabels[2].name}
                 autoComplete={false}
-                key={3}
+                value={data.address}
               />
               <TextField
                 id="standard-multiline-flexible-1"
                 label={personalInfoLabels[3].label}
                 placeholder={personalInfoLabels[3].placeholder}
-                onChange={handleChange}
+                onChange={(e) => handleChange(e, index)}
                 className="input-value"
                 name={personalInfoLabels[3].name}
                 autoComplete={false}
-                key={4}
+                value={data.city}
               />
               <TextField
                 id="standard-multiline-flexible-1"
                 label={personalInfoLabels[4].label}
                 placeholder={personalInfoLabels[4].placeholder}
-                onChange={handleChange}
+                onChange={(e) => handleChange(e, index)}
                 className="input-value"
                 name={personalInfoLabels[4].name}
                 autoComplete={false}
-                key={5}
+                value={data.contact}
               />
               <TextField
                 id="standard-multiline-flexible-1"
                 label={personalInfoLabels[5].label}
                 placeholder={personalInfoLabels[5].placeholder}
-                onChange={handleChange}
+                onChange={(e) => handleChange(e, index)}
                 className="input-value"
                 name={personalInfoLabels[5].name}
                 autoComplete={false}
-                key={6}
+                value={data.email}
               />
-            </>
+            </div>
           ))}
         </Panel>
 
         <Panel header="Experience" key="2">
           {experienceValues.map((experienceInfo, index) => (
-            <Collapse onChange={callback} className="resume-heading-section">
+            <Collapse
+              onChange={callback}
+              className="resume-heading-section"
+              accordion
+            >
               <Panel header={`Experience #${index + 1}`} key={index}>
                 <TextField
                   label={experienceInfoLabels[0].label}
@@ -263,7 +268,11 @@ const LeftSidebar = ({
 
         <Panel header="Education" key="3">
           {experienceValues.map((experienceInfo, index) => (
-            <Collapse onChange={callback} className="resume-heading-section">
+            <Collapse
+              onChange={callback}
+              className="resume-heading-section"
+              activeKey={activeKey}
+            >
               <Panel header={`Education #${index + 1}`} key={index}>
                 <TextField
                   label={educationInfoLabels[0].label}
@@ -334,7 +343,11 @@ const LeftSidebar = ({
 
         <Panel header="Projects" key="4">
           {experienceValues.map((experienceInfo, index) => (
-            <Collapse onChange={callback} className="resume-heading-section">
+            <Collapse
+              onChange={callback}
+              className="resume-heading-section"
+              activeKey={activeKey}
+            >
               <Panel header={`Project #${index + 1}`} key={index}>
                 <TextField
                   label={projectsInfoLabels[0].label}
