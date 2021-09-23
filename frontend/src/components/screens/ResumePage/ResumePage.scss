@@ -41,6 +41,7 @@
         height: 88vh;
         padding-left: 5%;
         padding-top: 5%;
+        background-color: #ffffff;
 
         & .full-name {
           font-size: 48px;
@@ -63,7 +64,8 @@
       & .right-section-secondary-details {
         width: 30%;
         padding-top: 5%;
-        margin-left: 5%;
+        background-color: #ffffff;
+        // margin-left: 5%;
       }
       & .section-container {
         margin-top: 10%;
