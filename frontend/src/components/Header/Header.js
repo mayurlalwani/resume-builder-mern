@@ -55,9 +55,13 @@ const Header = forwardRef((props, ref) => {
                   </span>
                 </Link>
               </Nav.Link>
-              <span className="menu-items" onClick={() => setDownload(true)}>
-                DOWNLOAD
-              </span>
+              <Nav.Link>
+                <GenericPdfDownloader
+                  rootElementId="resume-template"
+                  downloadFileName="resume"
+                />
+              </Nav.Link>
+
               <NavDropdown
                 title={userInfo?.name}
                 id="navbarScrollingDropdown"
@@ -80,12 +84,6 @@ const Header = forwardRef((props, ref) => {
           )}
         </Navbar.Collapse>
       </Container>
-      {download && (
-        <GenericPdfDownloader
-          rootElementId="resume-template"
-          downloadFileName="resume"
-        />
-      )}
     </Navbar>
   );
 });
