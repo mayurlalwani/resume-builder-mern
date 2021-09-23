@@ -12,13 +12,16 @@ import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../actions/userActions";
 import "./Header.css";
-import { forwardRef } from "react";
+import { forwardRef, useState } from "react";
+import GenericPdfDownloader from "../HtmlToPdf";
 
 const Header = forwardRef((props, ref) => {
   const dispatch = useDispatch();
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
   const history = useHistory();
+
+  const [download, setDownload] = useState(false);
 
   const logoutHandler = () => {
     dispatch(logout());
@@ -52,11 +55,9 @@ const Header = forwardRef((props, ref) => {
                   </span>
                 </Link>
               </Nav.Link>
-              <Nav.Link>
-                <Link to="/sharednotes">
-                  <span className="menu-items">DOWNLOAD</span>
-                </Link>
-              </Nav.Link>
+              <span className="menu-items" onClick={() => setDownload(true)}>
+                DOWNLOAD
+              </span>
               <NavDropdown
                 title={userInfo?.name}
                 id="navbarScrollingDropdown"
@@ -79,6 +80,12 @@ const Header = forwardRef((props, ref) => {
           )}
         </Navbar.Collapse>
       </Container>
+      {download && (
+        <GenericPdfDownloader
+          rootElementId="resume-template"
+          downloadFileName="resume"
+        />
+      )}
     </Navbar>
   );
 });

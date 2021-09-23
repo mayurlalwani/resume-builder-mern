@@ -21,6 +21,8 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.0.5",
     "node-sass": "^5.0.0",
-    "nodemon": "^2.0.12"
+    "nodemon": "^2.0.12",
+    "html2canvas": "^1.1.4",
+    "jspdf": "^2.3.1"
   }
 }

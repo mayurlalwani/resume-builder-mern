@@ -14,7 +14,7 @@ const ResumeTemplate = ({
 
   return (
     <div className="main-container-resume-section">
-      <div className="resume-details">
+      <div className="resume-details" id="resume-template">
         <div className="left-section-primary-details">
           <header className="header">
             <h1 className="full-name">{fullName ? fullName : "Your Name"}</h1>

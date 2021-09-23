@@ -450,9 +450,6 @@ const LeftSidebar = forwardRef((props, ref) => {
           />
         </Panel>
       </Collapse>
-      <Button type="primary" className="save-button" onClick={handleSave}>
-        Save
-      </Button>
     </div>
   );
 });
