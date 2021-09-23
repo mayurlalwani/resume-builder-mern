@@ -42,10 +42,15 @@ const saveReumeDetails = asyncHandler(async (req, res) => {
     res.json(createdResume);
   } else {
     console.log(resume[0]);
-    // resume.personalInfo = personalInfo;
+    resume[0].personalInfo = personalInfo;
+    resume[0].educationInfo = educationInfo;
     resume[0].experienceInfo = experienceInfo;
+    resume[0].projectsInfo = projectsInfo;
+    resume[0].skillsInfo = skillsInfo;
+    resume[0].toolsAndTechInfo = toolsAndTechInfo;
+    resume[0].achievementsInfo = achievementsInfo;
 
-    const updatedResume = await resume.save();
+    const updatedResume = await resume[0].save();
     res.json(updatedResume);
   }
 });
