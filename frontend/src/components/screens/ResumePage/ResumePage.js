@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, forwardRef } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getResumeDetails } from "../../../actions/resumeActions";
@@ -6,7 +6,7 @@ import LeftSidebar from "./LeftSidebar/LeftSidebar";
 import ResumeTemplate from "./ResumeTemplate/ResumeTemplate";
 import "./ResumePage.scss";
 
-const ResumePage = () => {
+const ResumePage = forwardRef((props, ref) => {
   const dispatch = useDispatch();
 
   const resumeDetails = useSelector(
@@ -115,6 +115,7 @@ const ResumePage = () => {
         setToolsAndTech={setToolsAndTech}
         achievements={achievements}
         setAchievements={setAchievements}
+        ref={ref}
       />
       <ResumeTemplate
         personalInfoValues={personalInfoValues}
@@ -128,6 +129,6 @@ const ResumePage = () => {
       />
     </div>
   );
-};
+});
 
 export default ResumePage;

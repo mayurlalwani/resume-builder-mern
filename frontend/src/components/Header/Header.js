@@ -12,8 +12,9 @@ import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../actions/userActions";
 import "./Header.css";
+import { forwardRef } from "react";
 
-const Header = () => {
+const Header = forwardRef((props, ref) => {
   const dispatch = useDispatch();
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
@@ -43,7 +44,12 @@ const Header = () => {
             >
               <Nav.Link>
                 <Link to="/resume">
-                  <span className="menu-items">SAVE</span>
+                  <span
+                    className="menu-items"
+                    onClick={() => ref.current.handleSave()}
+                  >
+                    SAVE
+                  </span>
                 </Link>
               </Nav.Link>
               <Nav.Link>
@@ -75,5 +81,5 @@ const Header = () => {
       </Container>
     </Navbar>
   );
-};
+});
 export default Header;

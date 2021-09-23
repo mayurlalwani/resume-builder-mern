@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { forwardRef, useState, useImperativeHandle } from "react";
 import { Collapse } from "antd";
 import "antd/dist/antd.css";
 import { Button, Input } from "antd";
@@ -14,22 +14,23 @@ import {
 
 const { Panel } = Collapse;
 
-const LeftSidebar = ({
-  personalInfoValues,
-  setPersonalInfoValues,
-  educationValues,
-  setEducationValues,
-  experienceValues,
-  setExperienceValues,
-  projectValues,
-  setProjectValues,
-  skills,
-  setSkills,
-  toolsAndTech,
-  setToolsAndTech,
-  achievements,
-  setAchievements,
-}) => {
+const LeftSidebar = forwardRef((props, ref) => {
+  const {
+    personalInfoValues,
+    setPersonalInfoValues,
+    educationValues,
+    setEducationValues,
+    experienceValues,
+    setExperienceValues,
+    projectValues,
+    setProjectValues,
+    skills,
+    setSkills,
+    toolsAndTech,
+    setToolsAndTech,
+    achievements,
+    setAchievements,
+  } = props;
   const userLogin = useSelector((state) => state.userLogin);
   const [activeKey, setActiveKey] = useState([]);
   const { userInfo } = userLogin;
@@ -119,6 +120,10 @@ const LeftSidebar = ({
     values.push([]);
     setProjectValues(values);
   };
+
+  useImperativeHandle(ref, () => ({
+    handleSave,
+  }));
 
   return (
     <div className="left-sidebar-container">
@@ -450,6 +455,6 @@ const LeftSidebar = ({
       </Button>
     </div>
   );
-};
+});
 
 export default LeftSidebar;
