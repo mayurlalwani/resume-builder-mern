@@ -102,21 +102,21 @@ const LeftSidebar = forwardRef((props, ref) => {
   const handleAddExperiencePanel = () => {
     setAddNewPanel(true);
     let values = [...experienceValues];
-    values.push([]);
+    values.push({});
     setExperienceValues(values);
   };
 
   const handleAddEducationPanel = () => {
     setAddNewPanel(true);
     let values = [...educationValues];
-    values.push([]);
+    values.push({});
     setEducationValues(values);
   };
 
   const handleAddProjectPanel = () => {
     setAddNewPanel(true);
     let values = [...projectValues];
-    values.push([]);
+    values.push({});
     setProjectValues(values);
   };
 
