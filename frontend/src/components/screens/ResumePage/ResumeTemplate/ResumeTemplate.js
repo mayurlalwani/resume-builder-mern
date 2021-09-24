@@ -48,7 +48,7 @@ const ResumeTemplate = ({
                     </div>
                     <span className="duration">
                       {/* {`${startDate ||  "Month 20XX" && ${endDate} || "-PRESENT"`} */}
-                      {startDate || "Month 20XX "}
+                      {startDate + " - " || "Month 20XX "}
                       {endDate || " - PRESENT"}
                     </span>
                     <p className="description">

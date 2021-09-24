@@ -96,7 +96,6 @@ const LeftSidebar = forwardRef((props, ref) => {
   };
 
   function callback(key) {
-    console.log({ key });
     setActiveKey(key);
   }
 
@@ -207,7 +206,11 @@ const LeftSidebar = forwardRef((props, ref) => {
               className="resume-heading-section"
               accordion
             >
-              <Panel header={`Experience #${index + 1}`} key={index}>
+              <Panel
+                header={`Experience #${index + 1}`}
+                key={index}
+                className="panel"
+              >
                 <TextField
                   label={experienceInfoLabels[0].label}
                   placeholder={experienceInfoLabels[0].placeholder}
@@ -356,7 +359,7 @@ const LeftSidebar = forwardRef((props, ref) => {
           <Button
             type="primary"
             className="add-button"
-            onClick={handleAddExperiencePanel}
+            onClick={handleAddEducationPanel}
           >
             Add
           </Button>
@@ -407,7 +410,7 @@ const LeftSidebar = forwardRef((props, ref) => {
           <Button
             type="primary"
             className="add-button"
-            onClick={handleAddExperiencePanel}
+            onClick={handleAddProjectPanel}
           >
             Add
           </Button>
@@ -425,6 +428,7 @@ const LeftSidebar = forwardRef((props, ref) => {
             value={skills}
           />
         </Panel>
+
         <Panel header="Tools and Technologies" key="6">
           <TextField
             label="Tools and Technologies"
@@ -437,6 +441,7 @@ const LeftSidebar = forwardRef((props, ref) => {
             value={toolsAndTech}
           />
         </Panel>
+
         <Panel header="Awards and Achievemnts" key="7">
           <TextField
             label="Awards and Achievemnts"

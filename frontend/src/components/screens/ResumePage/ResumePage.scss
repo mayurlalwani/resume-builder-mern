@@ -22,6 +22,9 @@
       margin-top: 10px;
       margin-left: 10px;
     }
+    & .panel {
+      margin-bottom: 10px;
+    }
   }
 
   .main-container-resume-section {
@@ -37,11 +40,12 @@
       background-color: #ffffff;
       margin-top: 2%;
       & .left-section-primary-details {
-        width: 458px;
+        width: 61%;
         height: 88vh;
         padding-left: 5%;
         padding-top: 5%;
         background-color: #ffffff;
+        border-color: white;
 
         & .full-name {
           font-size: 48px;
@@ -62,10 +66,11 @@
         }
       }
       & .right-section-secondary-details {
-        width: 30%;
+        width: 40%;
         padding-top: 5%;
         background-color: #ffffff;
-        // margin-left: 5%;
+        border-color: white;
+        padding-left: 5%;
       }
       & .section-container {
         margin-top: 10%;
@@ -73,7 +78,7 @@
         flex-direction: column;
 
         & .section-heading {
-          font-size: 12px;
+          font-size: 14px;
           font-family: Open Sans;
           color: #2079c7;
           background-color: transparent;
@@ -96,22 +101,21 @@
           vertical-align: baseline;
 
           &.name {
-            font-size: 14px;
+            font-size: 16px;
             font-weight: 700;
           }
           &.location {
-            font-size: 14px;
+            font-size: 16px;
             font-weight: 400;
           }
           &.section-title {
-            font-size: 14px;
+            font-size: 16px;
             text-decoration: none;
             font-style: italic;
           }
         }
         & .duration {
           font-size: 10px;
-          color: #666666;
           background-color: transparent;
           font-weight: 400;
           font-style: normal;
@@ -122,8 +126,7 @@
           text-transform: uppercase;
         }
         & .description {
-          font-size: 12px;
-          color: #666666;
+          font-size: 14px;
           background-color: transparent;
           font-weight: 400;
           font-style: normal;
@@ -134,8 +137,7 @@
         }
         & .right-section {
           &.description {
-            font-size: 12px;
-            color: #666666;
+            font-size: 14px;
             background-color: transparent;
             font-weight: 400;
             font-style: normal;
