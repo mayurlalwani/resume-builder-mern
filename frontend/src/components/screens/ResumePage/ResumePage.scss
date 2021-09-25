@@ -3,9 +3,12 @@
   height: 90vh;
   display: flex;
   font-family: Calibri, sans-serif;
+  background-color: white;
+  // border: solid 5px;
 
   & .left-sidebar-container {
     width: 35%;
+    // border: solid red;
 
     & .input-value {
       border-top: 0;
@@ -31,21 +34,27 @@
     width: 95vw;
     height: 100%;
     background-color: rgb(248, 249, 250);
+    // border: solid blue 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-y: scroll;
 
     & .resume-details {
       display: flex;
       width: 60%;
-      margin-left: 10%;
+      height: 100%;
+      // margin-left: 10%;
       box-shadow: 0px 0px 6px 0px grey;
-      background-color: #ffffff;
+      background-color: #ffffff !important;
       margin-top: 2%;
       & .left-section-primary-details {
-        width: 61%;
-        height: 88vh;
+        width: 60%;
         padding-left: 5%;
         padding-top: 5%;
-        background-color: #ffffff;
-        border-color: white;
+        background-color: #ffffff !important;
+        border-color: white !important;
+        border-right-color: white !important;
 
         & .full-name {
           font-size: 48px;
