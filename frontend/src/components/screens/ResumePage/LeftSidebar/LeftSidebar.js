@@ -12,7 +12,7 @@ import {
   projectsInfoLabels,
 } from "../../../constants";
 import { notification } from "antd";
-import { RadiusBottomleftOutlined } from "@ant-design/icons";
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 const { Panel } = Collapse;
 
@@ -134,6 +134,14 @@ const LeftSidebar = forwardRef((props, ref) => {
     setProjectValues(values);
   };
 
+  const handleOnDragEnd = (result) => {
+    if (!result.destination) return;
+    const items = Array.from(experienceValues);
+    const [reorderedItem] = items.splice(result.source.index, 1);
+    items.splice(result.destination.index, 0, reorderedItem);
+    setExperienceValues(items);
+  };
+
   useImperativeHandle(ref, () => ({
     handleSave,
   }));
@@ -214,88 +222,141 @@ const LeftSidebar = forwardRef((props, ref) => {
         </Panel>
 
         <Panel header="Experience" key="2">
-          {experienceValues.map((experienceInfo, index) => (
-            <Collapse
-              onChange={callback}
-              className="resume-heading-section"
-              accordion
-            >
-              <Panel
-                header={`Experience #${index + 1}`}
-                key={index}
-                className="panel"
-              >
-                <TextField
-                  label={experienceInfoLabels[0].label}
-                  placeholder={experienceInfoLabels[0].placeholder}
-                  onChange={(e) => handleChangeExperienceValues(e, index)}
-                  key={experienceInfoLabels[0].id}
-                  name={experienceInfoLabels[0].name}
-                  autoComplete={false}
-                  className="input-value"
-                  value={experienceInfo.companyName}
-                />
-                <TextField
-                  label={experienceInfoLabels[1].label}
-                  placeholder={experienceInfoLabels[1].placeholder}
-                  onChange={(e) => handleChangeExperienceValues(e, index)}
-                  key={experienceInfoLabels[1].id}
-                  name={experienceInfoLabels[1].name}
-                  autoComplete={false}
-                  className="input-value"
-                  value={experienceInfo.location}
-                />
+          <DragDropContext onDragEnd={handleOnDragEnd}>
+            <Droppable droppableId="experience">
+              {(provided) => (
+                <div
+                  className="experience"
+                  {...provided.droppableProps}
+                  ref={provided.innerRef}
+                >
+                  {experienceValues.map((experienceInfo, index) => {
+                    return (
+                      <Draggable
+                        key={index}
+                        draggableId={`experience-${index}`}
+                        index={index}
+                      >
+                        {(provided) => (
+                          <div
+                            ref={provided.innerRef}
+                            {...provided.draggableProps}
+                            key={index}
+                            {...provided.dragHandleProps}
+                          >
+                            <Collapse
+                              onChange={callback}
+                              className="resume-heading-section"
+                              accordion
+                            >
+                              <Panel
+                                header={`Experience #${index + 1}`}
+                                key={index}
+                                className="panel"
+                              >
+                                <TextField
+                                  label={experienceInfoLabels[0].label}
+                                  placeholder={
+                                    experienceInfoLabels[0].placeholder
+                                  }
+                                  onChange={(e) =>
+                                    handleChangeExperienceValues(e, index)
+                                  }
+                                  key={experienceInfoLabels[0].id}
+                                  name={experienceInfoLabels[0].name}
+                                  autoComplete={false}
+                                  className="input-value"
+                                  value={experienceInfo.companyName}
+                                />
+                                <TextField
+                                  label={experienceInfoLabels[1].label}
+                                  placeholder={
+                                    experienceInfoLabels[1].placeholder
+                                  }
+                                  onChange={(e) =>
+                                    handleChangeExperienceValues(e, index)
+                                  }
+                                  key={experienceInfoLabels[1].id}
+                                  name={experienceInfoLabels[1].name}
+                                  autoComplete={false}
+                                  className="input-value"
+                                  value={experienceInfo.location}
+                                />
 
-                <TextField
-                  label={experienceInfoLabels[2].label}
-                  placeholder={experienceInfoLabels[2].placeholder}
-                  onChange={(e) => handleChangeExperienceValues(e, index)}
-                  key={experienceInfoLabels[2].id}
-                  name={experienceInfoLabels[2].name}
-                  autoComplete={false}
-                  className="input-value"
-                  value={experienceInfo.jobTitle}
-                />
-                <TextField
-                  label={experienceInfoLabels[3].label}
-                  placeholder={experienceInfoLabels[3].placeholder}
-                  onChange={(e) => handleChangeExperienceValues(e, index)}
-                  key={experienceInfoLabels[3].id}
-                  name={experienceInfoLabels[3].name}
-                  autoComplete={false}
-                  className="input-value"
-                  value={experienceInfo.startDate}
-                />
-                <TextField
-                  label={experienceInfoLabels[4].label}
-                  placeholder={experienceInfoLabels[4].placeholder}
-                  onChange={(e) => handleChangeExperienceValues(e, index)}
-                  key={experienceInfoLabels[4].id}
-                  name={experienceInfoLabels[4].name}
-                  autoComplete={false}
-                  className="input-value"
-                  value={experienceInfo.endDate}
-                />
-                <TextField
-                  label={experienceInfoLabels[5].label}
-                  placeholder={experienceInfoLabels[5].placeholder}
-                  onChange={(e) => handleChangeExperienceValues(e, index)}
-                  key={experienceInfoLabels[5].id}
-                  name={experienceInfoLabels[5].name}
-                  autoComplete={false}
-                  className="input-value"
-                  value={experienceInfo.description}
-                />
-              </Panel>
-            </Collapse>
-          ))}
-          <Button
-            type="primary"
-            className="add-button"
-            onClick={handleAddExperiencePanel}
-          >
-            Add
-          </Button>
+                                <TextField
+                                  label={experienceInfoLabels[2].label}
+                                  placeholder={
+                                    experienceInfoLabels[2].placeholder
+                                  }
+                                  onChange={(e) =>
+                                    handleChangeExperienceValues(e, index)
+                                  }
+                                  key={experienceInfoLabels[2].id}
+                                  name={experienceInfoLabels[2].name}
+                                  autoComplete={false}
+                                  className="input-value"
+                                  value={experienceInfo.jobTitle}
+                                />
+                                <TextField
+                                  label={experienceInfoLabels[3].label}
+                                  placeholder={
+                                    experienceInfoLabels[3].placeholder
+                                  }
+                                  onChange={(e) =>
+                                    handleChangeExperienceValues(e, index)
+                                  }
+                                  key={experienceInfoLabels[3].id}
+                                  name={experienceInfoLabels[3].name}
+                                  autoComplete={false}
+                                  className="input-value"
+                                  value={experienceInfo.startDate}
+                                />
+                                <TextField
+                                  label={experienceInfoLabels[4].label}
+                                  placeholder={
+                                    experienceInfoLabels[4].placeholder
+                                  }
+                                  onChange={(e) =>
+                                    handleChangeExperienceValues(e, index)
+                                  }
+                                  key={experienceInfoLabels[4].id}
+                                  name={experienceInfoLabels[4].name}
+                                  autoComplete={false}
+                                  className="input-value"
+                                  value={experienceInfo.endDate}
+                                />
+                                <TextField
+                                  label={experienceInfoLabels[5].label}
+                                  placeholder={
+                                    experienceInfoLabels[5].placeholder
+                                  }
+                                  onChange={(e) =>
+                                    handleChangeExperienceValues(e, index)
+                                  }
+                                  key={experienceInfoLabels[5].id}
+                                  name={experienceInfoLabels[5].name}
+                                  autoComplete={false}
+                                  className="input-value"
+                                  value={experienceInfo.description}
+                                />
+                              </Panel>
+                            </Collapse>
+                          </div>
+                        )}
+                      </Draggable>
+                    );
+                  })}
+                  <Button
+                    type="primary"
+                    className="add-button"
+                    onClick={handleAddExperiencePanel}
+                  >
+                    Add
+                  </Button>
+                </div>
+              )}
+            </Droppable>
+          </DragDropContext>
         </Panel>
 
         <Panel header="Education" key="3">
