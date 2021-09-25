@@ -134,12 +134,28 @@ const LeftSidebar = forwardRef((props, ref) => {
     setProjectValues(values);
   };
 
-  const handleOnDragEnd = (result) => {
+  const handleOnDragEndExperience = (result) => {
     if (!result.destination) return;
     const items = Array.from(experienceValues);
     const [reorderedItem] = items.splice(result.source.index, 1);
     items.splice(result.destination.index, 0, reorderedItem);
     setExperienceValues(items);
+  };
+
+  const handleOnDragEndEducation = (result) => {
+    if (!result.destination) return;
+    const items = Array.from(educationValues);
+    const [reorderedItem] = items.splice(result.source.index, 1);
+    items.splice(result.destination.index, 0, reorderedItem);
+    setEducationValues(items);
+  };
+
+  const handleOnDragEndProject = (result) => {
+    if (!result.destination) return;
+    const items = Array.from(projectValues);
+    const [reorderedItem] = items.splice(result.source.index, 1);
+    items.splice(result.destination.index, 0, reorderedItem);
+    setProjectValues(items);
   };
 
   useImperativeHandle(ref, () => ({
@@ -222,7 +238,7 @@ const LeftSidebar = forwardRef((props, ref) => {
         </Panel>
 
         <Panel header="Experience" key="2">
-          <DragDropContext onDragEnd={handleOnDragEnd}>
+          <DragDropContext onDragEnd={handleOnDragEndExperience}>
             <Droppable droppableId="experience">
               {(provided) => (
                 <div
@@ -360,135 +376,236 @@ const LeftSidebar = forwardRef((props, ref) => {
         </Panel>
 
         <Panel header="Education" key="3">
-          {educationValues.map((educationInfo, index) => (
-            <Collapse
-              onChange={callback}
-              className="resume-heading-section"
-              activeKey={activeKey}
-            >
-              <Panel header={`Education #${index + 1}`} key={index}>
-                <TextField
-                  label={educationInfoLabels[0].label}
-                  placeholder={educationInfoLabels[0].placeholder}
-                  onChange={(e) => handleChangeEducationValues(e, index)}
-                  key={educationInfoLabels[0].id}
-                  name={educationInfoLabels[0].name}
-                  autoComplete={false}
-                  className="input-value"
-                  value={educationInfo.universityName}
-                />
-                <TextField
-                  label={educationInfoLabels[1].label}
-                  placeholder={educationInfoLabels[1].placeholder}
-                  onChange={(e) => handleChangeEducationValues(e, index)}
-                  key={educationInfoLabels[1].id}
-                  name={educationInfoLabels[1].name}
-                  autoComplete={false}
-                  className="input-value"
-                  value={educationInfo.collegeLocation}
-                />
+          <DragDropContext onDragEnd={handleOnDragEndEducation}>
+            <Droppable droppableId="education">
+              {(provided) => (
+                <div
+                  className="education"
+                  {...provided.droppableProps}
+                  ref={provided.innerRef}
+                >
+                  {educationValues.map((educationInfo, index) => {
+                    return (
+                      <Draggable
+                        key={index}
+                        draggableId={`education-${index}`}
+                        index={index}
+                      >
+                        {(provided) => (
+                          <div
+                            ref={provided.innerRef}
+                            {...provided.draggableProps}
+                            key={index}
+                            {...provided.dragHandleProps}
+                          >
+                            <Collapse
+                              onChange={callback}
+                              className="resume-heading-section"
+                              activeKey={activeKey}
+                            >
+                              <Panel
+                                header={`Education #${index + 1}`}
+                                key={index}
+                                className="panel"
+                              >
+                                <TextField
+                                  label={educationInfoLabels[0].label}
+                                  placeholder={
+                                    educationInfoLabels[0].placeholder
+                                  }
+                                  onChange={(e) =>
+                                    handleChangeEducationValues(e, index)
+                                  }
+                                  key={educationInfoLabels[0].id}
+                                  name={educationInfoLabels[0].name}
+                                  autoComplete={false}
+                                  className="input-value"
+                                  value={educationInfo.universityName}
+                                />
+                                <TextField
+                                  label={educationInfoLabels[1].label}
+                                  placeholder={
+                                    educationInfoLabels[1].placeholder
+                                  }
+                                  onChange={(e) =>
+                                    handleChangeEducationValues(e, index)
+                                  }
+                                  key={educationInfoLabels[1].id}
+                                  name={educationInfoLabels[1].name}
+                                  autoComplete={false}
+                                  className="input-value"
+                                  value={educationInfo.collegeLocation}
+                                />
 
-                <TextField
-                  label={educationInfoLabels[2].label}
-                  placeholder={educationInfoLabels[2].placeholder}
-                  onChange={(e) => handleChangeEducationValues(e, index)}
-                  key={educationInfoLabels[2].id}
-                  name={educationInfoLabels[2].name}
-                  autoComplete={false}
-                  className="input-value"
-                  value={educationInfo.degree}
-                />
-                <TextField
-                  label={educationInfoLabels[3].label}
-                  placeholder={educationInfoLabels[3].placeholder}
-                  onChange={(e) => handleChangeEducationValues(e, index)}
-                  key={educationInfoLabels[3].id}
-                  name={educationInfoLabels[3].name}
-                  autoComplete={false}
-                  className="input-value"
-                  value={educationInfo.startYear}
-                />
-                <TextField
-                  label={educationInfoLabels[4].label}
-                  placeholder={educationInfoLabels[4].placeholder}
-                  onChange={(e) => handleChangeEducationValues(e, index)}
-                  key={educationInfoLabels[4].id}
-                  name={educationInfoLabels[4].name}
-                  autoComplete={false}
-                  className="input-value"
-                  value={educationInfo.endYear}
-                />
-                <TextField
-                  label={educationInfoLabels[5].label}
-                  placeholder={educationInfoLabels[5].placeholder}
-                  onChange={(e) => handleChangeEducationValues(e, index)}
-                  key={educationInfoLabels[5].id}
-                  name={educationInfoLabels[5].name}
-                  autoComplete={false}
-                  className="input-value"
-                  value={educationInfo.cgpa}
-                />
-              </Panel>
-            </Collapse>
-          ))}
-          <Button
-            type="primary"
-            className="add-button"
-            onClick={handleAddEducationPanel}
-          >
-            Add
-          </Button>
+                                <TextField
+                                  label={educationInfoLabels[2].label}
+                                  placeholder={
+                                    educationInfoLabels[2].placeholder
+                                  }
+                                  onChange={(e) =>
+                                    handleChangeEducationValues(e, index)
+                                  }
+                                  key={educationInfoLabels[2].id}
+                                  name={educationInfoLabels[2].name}
+                                  autoComplete={false}
+                                  className="input-value"
+                                  value={educationInfo.degree}
+                                />
+                                <TextField
+                                  label={educationInfoLabels[3].label}
+                                  placeholder={
+                                    educationInfoLabels[3].placeholder
+                                  }
+                                  onChange={(e) =>
+                                    handleChangeEducationValues(e, index)
+                                  }
+                                  key={educationInfoLabels[3].id}
+                                  name={educationInfoLabels[3].name}
+                                  autoComplete={false}
+                                  className="input-value"
+                                  value={educationInfo.startYear}
+                                />
+                                <TextField
+                                  label={educationInfoLabels[4].label}
+                                  placeholder={
+                                    educationInfoLabels[4].placeholder
+                                  }
+                                  onChange={(e) =>
+                                    handleChangeEducationValues(e, index)
+                                  }
+                                  key={educationInfoLabels[4].id}
+                                  name={educationInfoLabels[4].name}
+                                  autoComplete={false}
+                                  className="input-value"
+                                  value={educationInfo.endYear}
+                                />
+                                <TextField
+                                  label={educationInfoLabels[5].label}
+                                  placeholder={
+                                    educationInfoLabels[5].placeholder
+                                  }
+                                  onChange={(e) =>
+                                    handleChangeEducationValues(e, index)
+                                  }
+                                  key={educationInfoLabels[5].id}
+                                  name={educationInfoLabels[5].name}
+                                  autoComplete={false}
+                                  className="input-value"
+                                  value={educationInfo.cgpa}
+                                />
+                              </Panel>
+                            </Collapse>
+                          </div>
+                        )}
+                      </Draggable>
+                    );
+                  })}
+                  <Button
+                    type="primary"
+                    className="add-button"
+                    onClick={handleAddEducationPanel}
+                  >
+                    Add
+                  </Button>
+                </div>
+              )}
+            </Droppable>
+          </DragDropContext>
         </Panel>
 
         <Panel header="Projects" key="4">
-          {projectValues.map((data, index) => (
-            <Collapse
-              onChange={callback}
-              className="resume-heading-section"
-              activeKey={activeKey}
-            >
-              <Panel header={`Project #${index + 1}`} key={index}>
-                <TextField
-                  label={projectsInfoLabels[0].label}
-                  placeholder={projectsInfoLabels[0].placeholder}
-                  onChange={(e) => handleChangeProjectValues(e, index)}
-                  key={projectsInfoLabels[0].id}
-                  name={projectsInfoLabels[0].name}
-                  autoComplete={false}
-                  className="input-value"
-                  value={data.projectName}
-                />
-                <TextField
-                  label={projectsInfoLabels[1].label}
-                  placeholder={projectsInfoLabels[1].placeholder}
-                  onChange={(e) => handleChangeProjectValues(e, index)}
-                  key={projectsInfoLabels[1].id}
-                  name={projectsInfoLabels[1].name}
-                  autoComplete={false}
-                  className="input-value"
-                  value={data.supervisor}
-                />
+          <DragDropContext onDragEnd={handleOnDragEndProject}>
+            <Droppable droppableId="project">
+              {(provided) => (
+                <div
+                  className="project"
+                  {...provided.droppableProps}
+                  ref={provided.innerRef}
+                >
+                  {projectValues.map((data, index) => {
+                    return (
+                      <Draggable
+                        key={index}
+                        draggableId={`project-${index}`}
+                        index={index}
+                      >
+                        {(provided) => (
+                          <div
+                            ref={provided.innerRef}
+                            {...provided.draggableProps}
+                            key={index}
+                            {...provided.dragHandleProps}
+                          >
+                            <Collapse
+                              onChange={callback}
+                              className="resume-heading-section"
+                              activeKey={activeKey}
+                            >
+                              <Panel
+                                header={`Project #${index + 1}`}
+                                key={index}
+                              >
+                                <TextField
+                                  label={projectsInfoLabels[0].label}
+                                  placeholder={
+                                    projectsInfoLabels[0].placeholder
+                                  }
+                                  onChange={(e) =>
+                                    handleChangeProjectValues(e, index)
+                                  }
+                                  key={projectsInfoLabels[0].id}
+                                  name={projectsInfoLabels[0].name}
+                                  autoComplete={false}
+                                  className="input-value"
+                                  value={data.projectName}
+                                />
+                                <TextField
+                                  label={projectsInfoLabels[1].label}
+                                  placeholder={
+                                    projectsInfoLabels[1].placeholder
+                                  }
+                                  onChange={(e) =>
+                                    handleChangeProjectValues(e, index)
+                                  }
+                                  key={projectsInfoLabels[1].id}
+                                  name={projectsInfoLabels[1].name}
+                                  autoComplete={false}
+                                  className="input-value"
+                                  value={data.supervisor}
+                                />
 
-                <TextField
-                  label={projectsInfoLabels[2].label}
-                  placeholder={projectsInfoLabels[2].placeholder}
-                  onChange={(e) => handleChangeProjectValues(e, index)}
-                  key={projectsInfoLabels[2].id}
-                  name={projectsInfoLabels[2].name}
-                  autoComplete={false}
-                  className="input-value"
-                  value={data.projectDescription}
-                />
-              </Panel>
-            </Collapse>
-          ))}
-          <Button
-            type="primary"
-            className="add-button"
-            onClick={handleAddProjectPanel}
-          >
-            Add
-          </Button>
+                                <TextField
+                                  label={projectsInfoLabels[2].label}
+                                  placeholder={
+                                    projectsInfoLabels[2].placeholder
+                                  }
+                                  onChange={(e) =>
+                                    handleChangeProjectValues(e, index)
+                                  }
+                                  key={projectsInfoLabels[2].id}
+                                  name={projectsInfoLabels[2].name}
+                                  autoComplete={false}
+                                  className="input-value"
+                                  value={data.projectDescription}
+                                />
+                              </Panel>
+                            </Collapse>
+                          </div>
+                        )}
+                      </Draggable>
+                    );
+                  })}
+                  <Button
+                    type="primary"
+                    className="add-button"
+                    onClick={handleAddProjectPanel}
+                  >
+                    Add
+                  </Button>
+                </div>
+              )}
+            </Droppable>
+          </DragDropContext>
         </Panel>
 
         <Panel header="Skills" key="5">
