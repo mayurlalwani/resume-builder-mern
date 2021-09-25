@@ -11,6 +11,8 @@ import {
   educationInfoLabels,
   projectsInfoLabels,
 } from "../../../constants";
+import { notification } from "antd";
+import { RadiusBottomleftOutlined } from "@ant-design/icons";
 
 const { Panel } = Collapse;
 
@@ -41,6 +43,17 @@ const LeftSidebar = forwardRef((props, ref) => {
 
   const dispatch = useDispatch();
 
+  const saveResume = useSelector((state) => state.saveResume);
+  const { loading, success } = saveResume;
+
+  const openNotification = (placement) => {
+    notification.info({
+      message: `Notification`,
+      description: "Saved Successfully!!",
+      placement,
+    });
+  };
+
   const handleSave = () => {
     dispatch(
       saveResumeAction({
@@ -53,6 +66,7 @@ const LeftSidebar = forwardRef((props, ref) => {
         achievementsInfo: achievements,
       })
     );
+    openNotification("bottomLeft");
   };
 
   const handleChange = (e, index) => {
