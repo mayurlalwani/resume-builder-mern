@@ -48,7 +48,7 @@ const ResumeTemplate = ({
                     </div>
                     <span className="duration">
                       {/* {`${startDate ||  "Month 20XX" && ${endDate} || "-PRESENT"`} */}
-                      {startDate + " - " || "Month 20XX "}
+                      {startDate ? startDate + " - " : "Month 20XX "}
                       {endDate || " - PRESENT"}
                     </span>
                     <p className="description">
@@ -124,7 +124,7 @@ const ResumeTemplate = ({
             <address>
               {address || "Address"} <br />
               {city || "City"},
-              <br /> {contact} <br />
+              <br /> {contact || "999999999"} <br />
               {email || "abc@example.com"}
             </address>
           </header>
