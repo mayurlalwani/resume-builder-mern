@@ -23,7 +23,7 @@ const Header = forwardRef((props, ref) => {
       <Container>
         <Navbar.Brand>
           <Link to="/">
-            <span className="menu-items">HOME</span>
+            <span className="menu-items">CV Maker</span>
           </Link>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
