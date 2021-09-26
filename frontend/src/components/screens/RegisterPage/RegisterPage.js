@@ -61,7 +61,7 @@ const RegisterPage = ({ history }) => {
 
   useEffect(() => {
     if (userInfo) {
-      history.push("/mynotes");
+      history.push("/resume");
     }
   }, [history, userInfo]);
 

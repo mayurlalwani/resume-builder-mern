@@ -7,27 +7,14 @@ import {
   userRegisterReducer,
   userUpdateReducer,
 } from "./reducers/userReducers";
-import {
-  // noteCreateReducer,
-  // noteDeleteReducer,
-  resumeListReducer,
-  resumeSaveReducer,
-  // noteShareReducer,
-  // noteUpdateReducer,
-  // sharedNoteListReducer,
-} from "./reducers/resumeReducer";
+import { resumeListReducer, resumeSaveReducer } from "./reducers/resumeReducer";
 
 const reducer = combineReducers({
   userLogin: userLoginReducer,
   userRegister: userRegisterReducer,
   userList: getAllUsersReducer,
   userUpdate: userUpdateReducer,
-  // noteList: resumeListReducer,
   saveResume: resumeSaveReducer,
-  // noteUpdate: noteUpdateReducer,
-  // noteDelete: noteDeleteReducer,
-  // noteShare: noteShareReducer,
-  // sharedNotesList: sharedNoteListReducer,
   resumeDetails: resumeListReducer,
 });
 

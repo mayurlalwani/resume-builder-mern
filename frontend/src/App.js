@@ -1,9 +1,8 @@
-import { createRef, useState } from "react";
+import { createRef } from "react";
 import "./App.scss";
 import Header from "./components/Header/Header";
 import LandingPage from "./components/screens/LandingPage/LandingPage";
 import ResumePage from "./components/screens/ResumePage/ResumePage";
-import SharedNotes from "./components/screens/SharedNotes/SharedNotes";
 import { BrowserRouter, Route } from "react-router-dom";
 import LoginPage from "./components/screens/LoginPage/LoginPage";
 import ProfilePage from "./components/screens/ProfilePage/ProfilePage";
@@ -20,7 +19,6 @@ const App = () => {
         <Route path="/profile" component={ProfilePage} exact />
         <Route path="/register" component={RegisterPage} exact />
         <Route path="/resume" component={() => <ResumePage ref={ref} />} />
-        <Route path="/sharednotes" component={() => <SharedNotes />} />
       </main>
     </BrowserRouter>
   );
