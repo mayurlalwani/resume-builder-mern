@@ -126,27 +126,6 @@ const projectsInfoLabels = [
   },
 ];
 
-const skillsInfoLabels = [
-  {
-    id: 1,
-    label: "Skills",
-    placeholder: "Skills",
-    name: "skills",
-  },
-  {
-    id: 2,
-    label: "Tools And Technologies",
-    placeholder: "Tools And Technologies",
-    name: "toolsAndTechnologies",
-  },
-  {
-    id: 3,
-    label: "Achievements",
-    placeholder: "Achievements",
-    name: "achievements",
-  },
-];
-
 module.exports = {
   personalInfoLabels,
   experienceInfoLabels,

@@ -32,7 +32,6 @@ const saveReumeDetails = asyncHandler(async (req, res) => {
     const createdResume = await createResume.save();
     res.json(createdResume);
   } else {
-    console.log(resume[0]);
     resume[0].personalInfo = personalInfo;
     resume[0].educationInfo = educationInfo;
     resume[0].experienceInfo = experienceInfo;

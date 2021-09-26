@@ -10,7 +10,6 @@ const GenericPdfDownloader = ({ rootElementId, downloadFileName }) => {
     html2canvas(input, { background: null, removeContainer: true }).then(
       (canvas) => {
         const imgData = canvas.toDataURL("image/png");
-        console.log({ imgData });
         const pdf = new jsPDF();
         pdf.setFillColor(33);
         pdf.setFillColor(135, 124, 45, 0);

@@ -1,9 +1,9 @@
 import React, { forwardRef, useState, useImperativeHandle } from "react";
 import { Collapse } from "antd";
 import "antd/dist/antd.css";
-import { Button, Input } from "antd";
+import { Button } from "antd";
 import TextField from "@material-ui/core/TextField";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { saveResumeAction } from "../../../../actions/resumeActions";
 import {
   personalInfoLabels,
@@ -33,18 +33,9 @@ const LeftSidebar = forwardRef((props, ref) => {
     achievements,
     setAchievements,
   } = props;
-  const userLogin = useSelector((state) => state.userLogin);
   const [activeKey, setActiveKey] = useState([]);
-  const { userInfo } = userLogin;
-
-  const [addNewPanel, setAddNewPanel] = useState(false);
-
-  const [expDetails, setExpDetails] = useState([]);
 
   const dispatch = useDispatch();
-
-  const saveResume = useSelector((state) => state.saveResume);
-  const { loading, success } = saveResume;
 
   const openNotification = (placement) => {
     notification.info({
@@ -114,21 +105,18 @@ const LeftSidebar = forwardRef((props, ref) => {
   }
 
   const handleAddExperiencePanel = () => {
-    setAddNewPanel(true);
     let values = [...experienceValues];
     values.push({});
     setExperienceValues(values);
   };
 
   const handleAddEducationPanel = () => {
-    setAddNewPanel(true);
     let values = [...educationValues];
     values.push({});
     setEducationValues(values);
   };
 
   const handleAddProjectPanel = () => {
-    setAddNewPanel(true);
     let values = [...projectValues];
     values.push({});
     setProjectValues(values);

@@ -1,18 +1,10 @@
-import {
-  Navbar,
-  NavDropdown,
-  Nav,
-  Button,
-  Form,
-  FormControl,
-  Container,
-} from "react-bootstrap";
+import { Navbar, NavDropdown, Nav, Container } from "react-bootstrap";
 
 import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../actions/userActions";
 import "./Header.css";
-import { forwardRef, useState } from "react";
+import { forwardRef } from "react";
 import GenericPdfDownloader from "../HtmlToPdf";
 
 const Header = forwardRef((props, ref) => {
@@ -20,8 +12,6 @@ const Header = forwardRef((props, ref) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
   const history = useHistory();
-
-  const [download, setDownload] = useState(false);
 
   const logoutHandler = () => {
     dispatch(logout());

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Form, Button, Row, Col } from "react-bootstrap";
 import MainScreen from "../../MainScreen";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import Loading from "../../Loading";
 import ErrorMessage from "../../ErrorMessage";
 import { register } from "../../../actions/userActions";
