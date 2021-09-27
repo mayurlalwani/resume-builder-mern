@@ -532,6 +532,7 @@ const LeftSidebar = forwardRef((props, ref) => {
                               <Panel
                                 header={`Project #${index + 1}`}
                                 key={index}
+                                className="panel"
                               >
                                 <TextField
                                   label={projectsInfoLabels[0].label}
