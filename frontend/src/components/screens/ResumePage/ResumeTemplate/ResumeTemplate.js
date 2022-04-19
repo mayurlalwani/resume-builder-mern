@@ -70,7 +70,6 @@ const ResumeTemplate = ({
                   degree,
                   startYear,
                   endYear,
-                  cgpa,
                 } = data;
                 return (
                   <>

@@ -16,12 +16,11 @@ const RegisterPage = ({ history }) => {
     "https://iupac.org/wp-content/uploads/2018/05/default-avatar.png"
   );
   const [message, setMessage] = useState(null);
-  const [picMessage, setPicMessage] = useState(null);
 
   const dispatch = useDispatch();
 
   const userRegister = useSelector((state) => state.userRegister);
-  const { loading, error, userInfo } = userRegister;
+  const { loading, userInfo } = userRegister;
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -36,7 +35,6 @@ const RegisterPage = ({ history }) => {
     if (!profilePic) {
       return;
     }
-    setPicMessage(null);
     if (profilePic.type === "image/jpeg" || profilePic.type === "image/png") {
       const data = new FormData();
       data.append("file", profilePic);
@@ -54,7 +52,6 @@ const RegisterPage = ({ history }) => {
           console.log(err);
         });
     } else {
-      return setPicMessage("Please select a message");
     }
   };
 

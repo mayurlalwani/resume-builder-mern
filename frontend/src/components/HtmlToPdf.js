@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
 
 const GenericPdfDownloader = ({ rootElementId, downloadFileName }) => {
-  const [html, setHtml] = useState();
   const downloadPdfDocument = () => {
     const input = document.getElementById(rootElementId);
 
@@ -13,7 +12,6 @@ const GenericPdfDownloader = ({ rootElementId, downloadFileName }) => {
         const pdf = new jsPDF();
         pdf.setFillColor(33);
         pdf.setFillColor(135, 124, 45, 0);
-        setHtml(pdf);
 
         pdf.addImage(imgData, "JPEG", 0, 0);
 
