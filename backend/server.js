@@ -6,6 +6,13 @@ const userRoutes = require("./routes/userRoutes");
 const resumeInfoRoutes = require("./routes/resumeInfoRoutes");
 const { errorHandler, notFound } = require("./middlewares/errorMiddleware");
 const path = require("path");
+const cors = require("cors");
+app.use(cors());
+
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  next();
+});
 
 dotenv.config();
 connectDB();

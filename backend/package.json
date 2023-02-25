@@ -6,8 +6,7 @@
   "scripts": {
     "start": "nodemon backend/server.js",
     "client": "npm start --prefix frontend",
-    "dev": "concurrently \"npm start\" \"npm run client\"",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix frontend"
+    "dev": "concurrently \"npm start\" \"npm run client\""
   },
   "author": "Mayur Lalwani",
   "license": "ISC",
@@ -24,6 +23,7 @@
     "mongoose": "^6.0.5",
     "node-sass": "^5.0.0",
     "nodemon": "^2.0.12",
-    "react-beautiful-dnd": "^13.1.0"
+    "react-beautiful-dnd": "^13.1.0",
+    "cors": "^2.8.5"
   }
 }
