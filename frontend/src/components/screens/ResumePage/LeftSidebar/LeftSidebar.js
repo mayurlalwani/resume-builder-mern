@@ -1,6 +1,5 @@
 import React, { forwardRef, useState, useImperativeHandle } from "react";
 import { Collapse } from "antd";
-import "antd/dist/antd.css";
 import { Button } from "antd";
 import TextField from "@material-ui/core/TextField";
 import { useDispatch } from "react-redux";
