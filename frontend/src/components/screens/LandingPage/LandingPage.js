@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { Container, Row, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import "./LandingPage.css";
 
 const LandingPage = ({ history }) => {
@@ -21,16 +22,16 @@ const LandingPage = ({ history }) => {
               </h1>
             </div>
             <div className="buttonContainer">
-              <a href="/login">
+              <Link to="/login">
                 <Button size="lg" className="landingbutton">
                   Login
                 </Button>
-              </a>
-              <a href="/register">
+              </Link>
+              <Link to="/register">
                 <Button className="landingbutton" variant="outline-primary">
                   Signup
                 </Button>
-              </a>
+              </Link>
             </div>
           </div>
         </Row>
