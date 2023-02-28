@@ -1,4 +1,3 @@
-import axios from "axios";
 import {
   RESUME_LIST_FAIL,
   RESUME_SAVE_FAIL,
@@ -7,6 +6,7 @@ import {
   RESUME_LIST_SUCCESS,
   RESUME_LIST_REQUEST,
 } from "../constants/resumeConstants";
+import axios from "../utils/axiosInstance";
 
 export const getResumeDetails = () => async (dispatch, getState) => {
   try {
