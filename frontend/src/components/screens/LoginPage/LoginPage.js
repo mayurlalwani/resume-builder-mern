@@ -16,16 +16,21 @@ const LoginPage = ({ history }) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { loading, error, userInfo } = userLogin;
 
+  const submitHandler = async (e) => {
+    e.preventDefault();
+    dispatch(login(email, password));
+  };
+
+  const setDefaultCredentials = () => {
+    setEmail(process.env.REACT_APP_DEFAULT_EMAIL);
+    setPassword(process.env.REACT_APP_DEFAULT_PASSWORD);
+  };
+
   useEffect(() => {
     if (userInfo) {
       history.push("/resume");
     }
   }, [history, userInfo]);
-
-  const submitHandler = async (e) => {
-    e.preventDefault();
-    dispatch(login(email, password));
-  };
 
   return (
     <MainScreen title="LOGIN">
@@ -53,8 +58,15 @@ const LoginPage = ({ history }) => {
             ></Form.Control>
           </Form.Group>
 
-          <Button variant="primary" type="submit">
+          <Button variant="primary" type="submit" className="mr-5">
             Submit
+          </Button>
+          <Button
+            variant="primary"
+            onClick={setDefaultCredentials}
+            type="submit"
+          >
+            Login with test credentials
           </Button>
         </Form>
         <Row className="py-3">
