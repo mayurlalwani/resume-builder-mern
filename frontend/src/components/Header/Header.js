@@ -19,7 +19,7 @@ const Header = forwardRef((props, ref) => {
   };
 
   return (
-    <Navbar bg="primary" expand="lg" variant="dark">
+    <Navbar bg="primary" expand="lg" variant="dark" style={{ height: "50px" }}>
       <Container>
         <Navbar.Brand>
           <Link to="/">
