@@ -142,7 +142,7 @@ const ResumeTemplate = ({
             </p>
           </section>
           <section className="section-container">
-            <span className="section-heading">Tools And Technologes</span>
+            <span className="section-heading">Tools And Technologies</span>
             <p className="right-section description">
               {toolsAndTech ||
                 "Lorem ipsum dolor sit amet. Consectetuer adipiscing elit. Sed diam nonummy nibh euismod tincidunt."}
