@@ -50,3 +50,22 @@ export const resumeSaveReducer = (state = {}, action) => {
       return state;
   }
 };
+
+export const viewResumeReducer = (
+  state = { viewTemplate: true, fillDetails: false },
+  action
+) => {
+  switch (action.type) {
+    case "VIEW_TEMPLATE":
+      return {
+        viewTemplate: !state.viewTemplate,
+        fillDetails: !state.fillDetails,
+      };
+
+    case "FILL_DETAILS":
+      return {};
+
+    default:
+      return state;
+  }
+};

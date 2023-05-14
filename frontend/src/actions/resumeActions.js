@@ -90,3 +90,7 @@ export const saveResumeAction =
       });
     }
   };
+
+export const toggleAction = () => async (dispatch, getState) => {
+  dispatch({ type: "VIEW_TEMPLATE" });
+};

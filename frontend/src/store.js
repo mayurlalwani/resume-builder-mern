@@ -7,7 +7,11 @@ import {
   userRegisterReducer,
   userUpdateReducer,
 } from "./reducers/userReducers";
-import { resumeListReducer, resumeSaveReducer } from "./reducers/resumeReducer";
+import {
+  resumeListReducer,
+  resumeSaveReducer,
+  viewResumeReducer,
+} from "./reducers/resumeReducer";
 
 const reducer = combineReducers({
   userLogin: userLoginReducer,
@@ -16,6 +20,7 @@ const reducer = combineReducers({
   userUpdate: userUpdateReducer,
   saveResume: resumeSaveReducer,
   resumeDetails: resumeListReducer,
+  viewTemplate: viewResumeReducer,
 });
 
 const userInfoFromStorage = localStorage.getItem("userInfo")

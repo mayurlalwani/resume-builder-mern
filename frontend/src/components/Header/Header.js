@@ -3,6 +3,7 @@ import { Navbar, NavDropdown, Nav, Container } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../actions/userActions";
+import { toggleAction } from "../../actions/resumeActions";
 import "./Header.css";
 import { forwardRef } from "react";
 import GenericPdfDownloader from "../HtmlToPdf";
@@ -10,6 +11,7 @@ import GenericPdfDownloader from "../HtmlToPdf";
 const Header = forwardRef((props, ref) => {
   const dispatch = useDispatch();
   const userLogin = useSelector((state) => state.userLogin);
+  const viewTemplate = useSelector((state) => state.viewTemplate.viewTemplate);
   const { userInfo } = userLogin;
   const history = useHistory();
 
@@ -19,14 +21,25 @@ const Header = forwardRef((props, ref) => {
   };
 
   return (
-    <Navbar bg="primary" expand="lg" variant="dark" style={{ height: "50px" }}>
+    <Navbar bg="primary" expand="lg" variant="dark">
       <Container>
+        <img
+          src="/icons.png"
+          height="30px"
+          width="30px"
+          alt="expand"
+          className="sidebar-toggle"
+          onClick={() => dispatch(toggleAction())}
+        />
+
         <Navbar.Brand>
           <Link to="/">
-            <span className="menu-items">CV Maker</span>
+            <span className="menu-items">Resume Builder</span>
           </Link>
         </Navbar.Brand>
+
         <Navbar.Toggle aria-controls="navbarScroll" />
+
         <Navbar.Collapse id="navbarScroll">
           <Nav className="m-auto"></Nav>
           {userInfo ? (
@@ -45,6 +58,7 @@ const Header = forwardRef((props, ref) => {
                   </span>
                 </Link>
               </Nav.Link>
+
               <Nav.Link>
                 <GenericPdfDownloader
                   rootElementId="resume-template"

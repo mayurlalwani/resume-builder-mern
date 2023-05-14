@@ -160,13 +160,41 @@
 }
 
 @media only screen and (max-width:600px) {
+  .conditional-menu-item {
+    display: block;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  .sidebar-toggle {
+    display: block;
+    cursor: pointer;
+  }
   .main-container {
     & .left-sidebar-container {
       width: 100vw;
     }
 
     & .main-container-resume-section {
-      display: none;
+      width: 100vw;
+      & .resume-details {
+        width: 100%;
+
+        & .left-section-primary-details {
+          & .full-name {
+            font-size: 2rem;
+          }
+        }
+        & .section-container {
+          width: 100%;
+          & .section-heading {
+            font-size: 0.7rem;
+            word-wrap: break-word;
+            width: 100%;
+          }
+        }
+      }
+
     }
   }
 }
